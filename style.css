@@ -1,0 +1,235 @@
+/* -- Reset & Global Styles -- */
+:root {
+    --bg-dark: #060608;
+    --bg-inner: #fdfdfd; /* White like the reference */
+    --text-dark: #111111;
+    --text-light: #ffffff;
+    --accent: #d2d6d8; /* The status text gray */
+    --font-main: 'Space Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+    overflow: hidden; /* We keep everything inside the glass frame */
+}
+
+/* -- The Outer Glow Container (The outer gray frame effect) -- */
+.outer-glow-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 96%;
+    height: 96%;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #101014 0%, #060608 100%);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: -1;
+}
+
+/* -- The Main Glass Frame -- */
+.portfolio-frame {
+    width: 90vw;
+    height: 90vh;
+    background-color: var(--bg-inner);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    padding: 2.5rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Nav, Hero, Footer */
+    overflow: hidden;
+}
+
+/* -- Navigation -- */
+.header-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-dark);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4c4f52; /* Lighter grey text */
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #55efc4; /* The green active dot */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(85, 239, 196, 0.6);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.6;
+}
+
+.count {
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: #a0a0a0; /* Lighter grey count numbers */
+}
+
+.primary-btn {
+    justify-self: end;
+}
+
+/* -- The Hero (Portrait & Big Name) -- */
+.hero-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.big-text {
+    position: absolute;
+    font-size: 8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    user-select: none;
+    z-index: 1; /* Behind the portrait image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outline-text {
+    /* Critical technique for the reference image's look */
+    -webkit-text-stroke: 1px var(--text-dark);
+    color: transparent;
+}
+
+.filled-text {
+    color: var(--text-dark);
+}
+
+.portrait-wrapper {
+    position: relative;
+    height: 100%;
+    z-index: 2; /* In front of the large text */
+    display: flex;
+    align-items: flex-end; /* Portrait rests on the bottom */
+}
+
+.grayscale-portrait {
+    max-height: 100%;
+    width: auto;
+    filter: grayscale(100%) contrast(1.1);
+    mix-blend-mode: multiply; /* Optional, helps it sit in the white frame */
+}
+
+/* -- Bottom Information Footer -- */
+.bottom-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.bio-block h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.bio-block p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #333333;
+    max-width: 500px;
+    margin-bottom: 1rem;
+}
+
+.secondary-btn {
+    background-color: var(--text-dark) !important;
+}
+
+/* Socials section on the right */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    justify-self: end;
+}
+
+.social-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 30px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.social-item:hover {
+    background-color: #f7f7f7;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.social-item img {
+    height: 18px;
+    width: 18px;
+    filter: invert(1); /* Flip белый иконки, чтобы сделать их черными */
+}
+
+/* -- Buttons (Replicating the look) -- */
+.cta-btn {
+    font-family: var(--font-main);
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cta-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
