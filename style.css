@@ -77,7 +77,6 @@ body {
     font-weight: 500;
 }
 
-/* -- Hero Canvas Section (The Fix Area) -- */
 /* -- Updated Hero Canvas -- */
 .hero-content {
     position: relative;
@@ -90,25 +89,33 @@ body {
     align-items: flex-end; /* Portrait sits flush against footer barrier */
 }
 
-/* -- Updated Big Text Alignment -- */
+/* ==========================================================================
+   UPDATED TYPOGRAPHY LAYOUT
+   ========================================================================== */
 .big-text {
     position: absolute;
-    top: 50%;
+    top: 36%; /* Keeps the text high behind your ears/hair, clear of the suit */
     left: 50%;
     transform: translate(-50%, -50%); 
-    font-size: 11vw; /* Scales smoothly across monitors */
+    font-size: 9vw; 
     font-weight: 900;
     text-transform: uppercase;
-    line-height: 0.85; /* Tight stacked line-height */
-    letter-spacing: -3px;
+    letter-spacing: -2px;
     user-select: none;
-    z-index: 1; /* Sits directly behind portrait layers */
+    z-index: 1; 
+    
     display: flex;
-    flex-direction: column; /* 👈 Reverts to vertical stacking */
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10Svw; /* Pushes both words outward from the center */
+    
     width: 100%;
-    text-align: center;
-    gap: 0; /* 👈 Connects the words for a single title look */
+    white-space: nowrap;
+}
+
+/* 👈 ADD THIS NEW RULE DIRECTLY BELOW .BIG-TEXT */
+.last-name {
+    margin-left: 5vw; /* Independently nudges HANSAKA further to the right */
 }
 
 .outline-text {
@@ -122,17 +129,18 @@ body {
 
 /* -- Lock portrait height dynamically and implement blending -- */
 .portrait-wrapper {
-    position: relative; /* Changed from absolute to relative to sit in hero-content flex box */
+    position: relative; 
     height: 100%; 
-    z-index: 2; /* Forces image overlay above background typography */
+    z-index: 2; 
     display: flex;
     align-items: flex-end;
     justify-content: center;
     
-    /* 👈 THE NEW BLENDING SECRET: Applied to the wrapper, not the image */
-    /* This creates a gradient opacity from pure white at the top to transparent at the bottom */
     mask-image: linear-gradient(to bottom, #fff 0%, #fff 40%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, #fff 0%, #fff 40%, transparent 100%);
+
+    /* 👈 ADD THIS LINE TO SHIFT IT LEFT */
+    transform: translateX(-3vw); /* Adjust this number (e.g., -2vw or -4vw) to slide it exactly where you want it */
 }
 
 .grayscale-portrait {
@@ -220,4 +228,109 @@ body {
 
 .cta-btn:hover {
     transform: scale(1.03);
+}
+
+/* ==========================================================================
+   LIVE TERMINAL STATUS COMPONENT
+   ========================================================================== */
+
+/* Keeps the dot and text on a single, perfectly aligned line */
+.status-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the dot and the text */
+}
+
+/* The Live Green Dot Asset */
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e; /* Vibrant console green */
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+}
+
+/* The Radar Glow Ripple Ring */
+.pulse-dot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #22c55e;
+    border-radius: 50%;
+    animation: terminal-pulse 2s infinite ease-in-out;
+    opacity: 0.7;
+}
+
+/* Terminal Text Style */
+.status-text {
+    font-family: 'Courier New', Courier, monospace; /* Gives it an authentic compiler look */
+    font-size: 0.85rem;
+    color: #666666; /* Muted gray for secondary console data */
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+/* Highlights the active variables */
+.status-highlight {
+    color: #111111; /* Deep rich dark tone to match your main theme */
+    font-weight: 600;
+}
+
+/* Ripple Animation Formula */
+@keyframes terminal-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+    }
+}
+
+/* Keeps the green dot and terminal text beautifully aligned on one horizontal line */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between green dot and text */
+}
+
+/* The Live Green Dot */
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e; /* Vibrant terminal green */
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0; /* Prevents browser from distorting the dot shape */
+}
+
+/* The Subtle Radar Ripple Ring */
+.pulse-dot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #22c55e;
+    border-radius: 50%;
+    animation: terminal-pulse 2s infinite ease-in-out;
+    opacity: 0.7;
+}
+
+/* Ripple Animation Formula */
+@keyframes terminal-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+    }
 }
