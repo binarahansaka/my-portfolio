@@ -68,4 +68,25 @@ window.addEventListener('load', () => {
         gsap.to(glitchLayer, { opacity: 0, duration: 0.2 });
     });
 
+    // 3. Scroll-in reveal for the Projects / Stack / Research / Contact sections
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.querySelectorAll(".content-frame").forEach((frame) => {
+        gsap.fromTo(
+            frame,
+            { opacity: 0, y: 40 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: frame,
+                    start: "top 85%",
+                    toggleActions: "play none none none",
+                },
+            }
+        );
+    });
+
 });
