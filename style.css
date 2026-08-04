@@ -13,28 +13,37 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--bg-dark);
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    overflow: hidden; 
+    gap: 1.5rem;
+    padding: 2rem 0 3rem;
+    overflow-x: hidden;
 }
 
 .portfolio-frame {
     width: 94vw;
+    max-width: 1400px;
     height: 92vh;
+    min-height: 640px;
     background-color: var(--bg-inner);
     border-radius: 12px;
     padding: 2rem 2.5rem;
     display: grid;
     grid-template-rows: auto 1fr auto; /* Strict layout boundaries */
     gap: 1rem;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
+    flex-shrink: 0;
 }
 
 /* -- Header Section -- */
@@ -219,6 +228,10 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     transition: transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .primary-btn {
@@ -332,5 +345,455 @@ body {
     100% {
         transform: scale(2.8);
         opacity: 0;
+    }
+}
+/* ==========================================================================
+   CONTENT SECTIONS — Projects / Stack / Research / Contact
+   ========================================================================== */
+
+.content-frame {
+    width: 94vw;
+    max-width: 1400px;
+    background-color: var(--bg-inner);
+    border-radius: 12px;
+    padding: 3.5rem 3rem;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.frame-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.6rem;
+}
+
+.section-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 2.2rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+/* -- Projects -- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+}
+
+.project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 1.6rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.project-card:not(.project-card-placeholder):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--accent-green);
+}
+
+.project-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9rem;
+}
+
+.project-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    background-color: #f3f4f6;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.project-link-arrow {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover .project-link-arrow {
+    transform: translate(2px, -2px);
+}
+
+.project-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.55rem;
+    color: var(--text-dark);
+}
+
+.project-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 0.9rem;
+}
+
+.project-meta {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.project-card-placeholder {
+    opacity: 0.55;
+    border-style: dashed;
+    cursor: default;
+}
+
+/* -- Stack -- */
+.stack-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2.2rem;
+}
+
+.stack-group h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.9rem;
+    color: var(--text-dark);
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-pill {
+    font-size: 0.72rem;
+    background-color: #f3f4f6;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* -- Research -- */
+.research-card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 1.9rem;
+    margin-bottom: 2.2rem;
+}
+
+.research-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.68rem;
+    color: var(--accent-green);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.9rem;
+    font-weight: 700;
+}
+
+.research-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+    color: var(--text-dark);
+}
+
+.research-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.tech-inline {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-dark) !important;
+}
+
+.tech-inline b {
+    font-weight: 700;
+}
+
+.future-list h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.9rem;
+    color: var(--text-dark);
+}
+
+.future-list ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.future-list li {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    padding-left: 1.3rem;
+    position: relative;
+    line-height: 1.5;
+}
+
+.future-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: 700;
+}
+
+/* -- Contact -- */
+.contact-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.contact-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1.3rem;
+    max-width: 440px;
+    line-height: 1.6;
+}
+
+.contact-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.contact-detail-list span {
+    font-size: 0.8rem;
+    color: var(--text-dark);
+}
+
+.contact-detail-list b {
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+.social-links-static {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.social-links-static .social-item {
+    position: static;
+}
+
+/* -- Site footer -- */
+.site-footer {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE — Tablet & Mobile
+   ========================================================================== */
+@media (max-width: 900px) {
+    .portfolio-frame {
+        height: auto;
+        min-height: unset;
+        overflow: visible;
+        padding: 1.5rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* -- Header stacks -- */
+    .header-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+    }
+    .status-indicator p {
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+    .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .nav-links a {
+        font-size: 0.72rem;
+    }
+    .header-nav .cta-btn {
+        width: 100%;
+    }
+
+    /* -- Hero restacks into a simple centered column -- */
+    .hero-content {
+        position: relative;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1.5rem 0 1rem;
+        gap: 0.5rem;
+    }
+    .big-text {
+        position: static;
+        transform: none;
+        flex-direction: column;
+        align-items: center;
+        white-space: normal;
+        font-size: 15vw;
+        gap: 1vw;
+        margin-bottom: 0.5rem;
+    }
+    .last-name {
+        margin-left: 0;
+    }
+    .portrait-wrapper {
+        position: static;
+        height: auto;
+        width: 55vw;
+        max-width: 260px;
+        transform: none;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+    .grayscale-portrait {
+        height: auto;
+        width: 100%;
+    }
+    .social-links {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1.25rem;
+        width: 100%;
+    }
+    .social-item {
+        width: auto;
+        padding: 8px 18px;
+    }
+
+    /* -- Footer / bio -- */
+    .bottom-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.1rem;
+        padding-top: 1.2rem;
+    }
+    .bio-block h2 {
+        font-size: 1.05rem;
+    }
+    .bio-block p {
+        font-size: 0.78rem;
+        max-width: 100%;
+    }
+    .bottom-info .cta-btn {
+        width: 100%;
+    }
+
+    /* -- Content sections -- */
+    .content-frame {
+        padding: 2.25rem 1.4rem;
+    }
+    .section-title {
+        font-size: 1.7rem;
+    }
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    .stack-groups {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+    }
+    .contact-grid {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contact-info p {
+        max-width: 100%;
+    }
+    .social-links-static {
+        width: 100%;
+    }
+    .social-links-static .social-item {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1.25rem 0 2rem;
+        gap: 1rem;
+    }
+    .portfolio-frame,
+    .content-frame {
+        width: 92vw;
+        border-radius: 10px;
+    }
+    .status-indicator p {
+        font-size: 0.62rem;
+    }
+    .big-text {
+        font-size: 17vw;
+        letter-spacing: -1px;
+    }
+    .portrait-wrapper {
+        width: 68vw;
+        max-width: 220px;
+    }
+    .section-label {
+        font-size: 0.66rem;
+    }
+    .section-title {
+        font-size: 1.4rem;
+        gap: 0.4rem;
+        margin-bottom: 1.6rem;
+    }
+    .content-frame {
+        padding: 1.9rem 1.1rem;
+    }
+    .project-card,
+    .research-card {
+        padding: 1.25rem;
+    }
+    .cta-btn {
+        font-size: 0.7rem;
+        padding: 10px 18px;
+    }
+    .tag-pill {
+        font-size: 0.68rem;
+        padding: 5px 12px;
     }
 }
